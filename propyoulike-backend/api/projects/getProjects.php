@@ -1,9 +1,7 @@
 <?php
-require_once '../db.php'; // 🔹 include the centralized DB connection
+require_once '../db.php'; 
+require_once '../cors.php';
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Content-Type: application/json");
 
 // Fetch projects along with builder name
