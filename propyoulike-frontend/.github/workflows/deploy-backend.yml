@@ -1,0 +1,24 @@
+name: Deploy PHP Backend to BigRock
+
+on:
+  push:
+    branches:
+      - main   # deploy on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4
+      with:
+        server: ${{ secrets.BIGROCK_HOST }}
+        username: ${{ secrets.BIGROCK_USER }}
+        password: ${{ secrets.BIGROCK_PASSWORD }}
+        local-dir: api        # your local folder containing PHP files
+        server-dir: /public_html/api  # BigRock server path for APIs
+        protocol: ftps
